@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,8 +53,8 @@
         /* ─── Pixel Gun Scope Cursor ─────────────────────────────────────── */
         .cursor {
             position: fixed;
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
@@ -69,36 +69,36 @@
 
         .cursor-line.top {
             top: 0;
-            left: 14px;
+            left: 10px;
             width: 4px;
-            height: 10px;
+            height: 8px;
         }
 
         .cursor-line.bottom {
             bottom: 0;
-            left: 14px;
+            left: 10px;
             width: 4px;
-            height: 10px;
+            height: 8px;
         }
 
         .cursor-line.left {
             left: 0;
-            top: 14px;
-            width: 10px;
+            top: 10px;
+            width: 8px;
             height: 4px;
         }
 
         .cursor-line.right {
             right: 0;
-            top: 14px;
-            width: 10px;
+            top: 10px;
+            width: 8px;
             height: 4px;
         }
 
         .cursor-dot {
             position: absolute;
-            top: 14px;
-            left: 14px;
+            top: 10px;
+            left: 10px;
             width: 4px;
             height: 4px;
             background: var(--primary-glow);
@@ -115,8 +115,8 @@
 
         .cursor-trail {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border: 2px dashed var(--primary-glow);
             border-radius: 0;
             pointer-events: none;
@@ -669,7 +669,7 @@
             border-radius: 50%;
             z-index: 5;
             border: 6px solid var(--primary);
-            box-shadow: 0 0 50px rgba(255, 0, 21, 0.3), inset 0 0 35px rgba(255, 0, 21, 0.25);
+            box-shadow: 0 0 50px rgba(255, 0, 21, 0.3);
             background: rgba(15, 0, 0, 0.6);
             transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
             display: flex;
@@ -681,7 +681,7 @@
 
         .avatar-container-new:hover {
             border-color: var(--primary-glow);
-            box-shadow: 0 0 65px rgba(255, 0, 21, 0.65), inset 0 0 45px rgba(255, 0, 21, 0.4);
+            box-shadow: 0 0 65px rgba(255, 0, 21, 0.65);
             transform: scale(1.02);
         }
 
@@ -1372,6 +1372,147 @@
         .delay-2 {
             transition-delay: 0.2s;
         }
+
+        /* Skills Grid Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skills-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(196, 10, 27, 0.15);
+            padding: 35px 30px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .skills-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dark-red), var(--primary));
+        }
+
+        .skills-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skills-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(var(--accent-rgb), 0.08);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            color: rgb(var(--accent-rgb));
+            box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.1);
+            flex-shrink: 0;
+        }
+
+        .skills-icon-wrapper svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2px;
+        }
+
+        .skills-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        .skill-percent {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ui-gray);
+            letter-spacing: 0.5px;
+        }
+
+        .skill-progress-bg {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            background: var(--accent-grad);
+            box-shadow: var(--accent-glow);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 1.5s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+
+        .skills-card.active .skill-progress-fill {
+            width: var(--progress-width);
+        }
+
+        /* Button Glass Shatter Effect CSS */
+        .shatter-hide-content > *:not(.shatter-overlay):not(.glass-cracks) {
+            opacity: 0 !important;
+            transition: opacity 0.2s ease;
+        }
+
+        .glass-shard {
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        .glass-cracks {
+            animation: crack-pulse 0.3s ease-out;
+        }
+
+        @keyframes crack-pulse {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 
@@ -1399,6 +1540,7 @@
         <div class="nav-links">
             <a href="#home" class="active">HOME</a>
             <a href="#about">ABOUT</a>
+            <a href="#skills">SKILLS</a>
             <a href="#experience">INTERNSHIPS</a>
             <a href="#achievements">ACHIEVEMENTS</a>
             <a href="#projects">PROJECTS</a>
@@ -1422,6 +1564,9 @@
                     <span class="typewriter-prefix"></span>
                     <span class="typewriter-text" id="typewriter"></span>
                     <span class="typewriter-cursor">|</span>
+                </div>
+                <div class="hero-subtitle-new" style="font-size: 13px; font-weight: 700; color: rgba(234, 234, 234, 0.55); letter-spacing: 2px; text-transform: uppercase; margin: 10px 0; border-left: 2px solid var(--primary); padding-left: 10px; line-height: 1.6; max-width: 600px; text-align: left;">
+                    Computer Science Engineering Student | Java Developer | Full Stack Learner | AI Enthusiast | Problem Solver
                 </div>
                 <p class="hero-description">
                     Computer Science operative focused on compiling solid foundations in Backend Development via Java architectures and Database matrices. I specialize in the architecture behind the interface—designing systems that scale, APIs that execute precisely, and databases that ensure uncompromised structural integrity.
@@ -1475,7 +1620,7 @@
                 Computer Science operative focused on compiling solid foundations in Backend Development via Java
                 architectures and Database matrices. I specialize in the architecture behind the interface—designing
                 systems that scale, APIs that execute precisely, and databases that ensure uncompromised structural
-                integrity.
+                integrity. Currently strengthening core computer science concepts through active preparation in Data Structures & Algorithms.
             </p>
 
             <div class="about-stats">
@@ -1508,9 +1653,385 @@
         </div>
     </section>
 
+    <!-- ======================= SKILLS ======================== -->
+    <section id="skills">
+        <div class="section-bg-num">03</div>
+        <div class="reveal">
+            <h2 class="section-title glitch" data-text="SKILLS">SKILLS</h2>
+            <div class="skills-grid">
+                
+                <!-- Card 1: Programming Languages -->
+                <div class="skills-card tilt-element reveal" style="--accent-grad: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%); --accent-glow: 0 0 10px rgba(0, 242, 254, 0.5); --accent-rgb: 0, 242, 254;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Code Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Programming Languages</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percent">50%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">C</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Web Technologies -->
+                <div class="skills-card tilt-element reveal delay-1" style="--accent-grad: linear-gradient(90deg, #11998e 0%, #38ef7d 100%); --accent-glow: 0 0 10px rgba(56, 239, 125, 0.5); --accent-rgb: 56, 239, 125;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Globe Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Web Technologies</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">CSS</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript (Basic)</span>
+                                <span class="skill-percent">50%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Database -->
+                <div class="skills-card tilt-element reveal delay-2" style="--accent-grad: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%); --accent-glow: 0 0 10px rgba(225, 0, 255, 0.5); --accent-rgb: 225, 0, 255;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Database Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Database</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MySQL</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Firebase</span>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Supabase</span>
+                                <span class="skill-percent">55%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 55%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Core CS Skills -->
+                <div class="skills-card tilt-element reveal" style="--accent-grad: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); --accent-glow: 0 0 10px rgba(0, 242, 254, 0.5); --accent-rgb: 0, 242, 254;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Cpu Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                <rect x="9" y="9" width="6" height="6"></rect>
+                                <line x1="9" y1="1" x2="9" y2="4"></line>
+                                <line x1="15" y1="1" x2="15" y2="4"></line>
+                                <line x1="9" y1="20" x2="9" y2="23"></line>
+                                <line x1="15" y1="20" x2="15" y2="23"></line>
+                                <line x1="20" y1="9" x2="23" y2="9"></line>
+                                <line x1="20" y1="15" x2="23" y2="15"></line>
+                                <line x1="1" y1="9" x2="4" y2="9"></line>
+                                <line x1="1" y1="15" x2="4" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Core CS Skills</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Data Structures & Algorithms (Active Prep)</span>
+                                <span class="skill-percent">45%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 45%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">OOP Concepts</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Problem Solving</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Debugging</span>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: AI & Tools -->
+                <div class="skills-card tilt-element reveal delay-1" style="--accent-grad: linear-gradient(90deg, #a8ff78 0%, #78ffd6 100%); --accent-glow: 0 0 10px rgba(120, 255, 214, 0.5); --accent-rgb: 120, 255, 214;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Sparkles Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">AI & Tools</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">AI Fundamentals</span>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Prompt Engineering</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">ChatGPT</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Claude Code</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Tools -->
+                <div class="skills-card tilt-element reveal delay-2" style="--accent-grad: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); --accent-glow: 0 0 10px rgba(255, 75, 43, 0.5); --accent-rgb: 255, 75, 43;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Tool Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Tools</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">VS Code</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">IntelliJ IDEA</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">GitHub</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Canva</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Tinkercad</span>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Soft Skills -->
+                <div class="skills-card tilt-element reveal" style="--accent-grad: linear-gradient(90deg, #ff007f 0%, #ff758c 100%); --accent-glow: 0 0 10px rgba(255, 117, 140, 0.5); --accent-rgb: 255, 117, 140;">
+                    <div class="skills-card-header">
+                        <div class="skills-icon-wrapper">
+                            <!-- Users Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skills-card-title">Soft Skills</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Communication</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Teamwork</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Adaptability</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Quick Learning</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Leadership</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-progress-bg">
+                                <div class="skill-progress-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- ======================= EXPERIENCE ==================== -->
     <section id="experience">
-        <div class="section-bg-num">03</div>
+        <div class="section-bg-num">04</div>
         <div class="reveal">
             <h2 class="section-title glitch" data-text="INTERNSHIPS">INTERNSHIPS</h2>
             <div class="timeline">
@@ -1541,7 +2062,7 @@
 
     <!-- ======================= ACHIEVEMENTS ====================== -->
     <section id="achievements">
-        <div class="section-bg-num">04</div>
+        <div class="section-bg-num">05</div>
         <div class="reveal">
             <h2 class="section-title glitch" data-text="ACHIEVEMENTS">ACHIEVEMENTS</h2>
             <div class="achievements-grid">
@@ -1630,7 +2151,7 @@
 
     <!-- ======================= PROJECTS ====================== -->
     <section id="projects">
-        <div class="section-bg-num">05</div>
+        <div class="section-bg-num">06</div>
         <div class="reveal">
             <h2 class="section-title glitch" data-text="PROJECTS">PROJECTS</h2>
             <div class="projects-grid">
@@ -1674,7 +2195,7 @@
 
     <!-- ======================= CONTACT ======================= -->
     <section id="contact">
-        <div class="section-bg-num" style="top:-30px;">06</div>
+        <div class="section-bg-num" style="top:-30px;">07</div>
         <div class="contact-info reveal">
             <h2 class="section-title glitch" data-text="CONTACT">CONTACT</h2>
             <p>
@@ -1738,51 +2259,436 @@
             });
         });
 
-        // 8-Bit Gunshot Sound Synthesizer
+        // Sleek Futuristic UI Cyber-Snap Synthesizer (satisfying, clean, non-annoying trigger)
         let audioCtx;
-        function play8BitGunshot() {
+        function playSniperGunshot() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             if (audioCtx.state === 'suspended') audioCtx.resume();
 
-            const osc = audioCtx.createOscillator();
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.1);
+            const now = audioCtx.currentTime;
 
-            const oscGain = audioCtx.createGain();
-            oscGain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            oscGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            // Master Gain for gunshot - loud, punchy, but clipping-free
+            const masterGain = audioCtx.createGain();
+            masterGain.gain.setValueAtTime(0.7, now);
+            masterGain.connect(audioCtx.destination);
 
-            osc.connect(oscGain);
-            oscGain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.1);
+            // 1. Initial Shockwave Crack (Sharp attack transient)
+            const crackOsc = audioCtx.createOscillator();
+            const crackGain = audioCtx.createGain();
+            crackOsc.type = 'sawtooth';
+            // Rapid pitch sweep downwards to simulate compression shockwave
+            crackOsc.frequency.setValueAtTime(5000, now);
+            crackOsc.frequency.exponentialRampToValueAtTime(100, now + 0.02);
+            
+            crackGain.gain.setValueAtTime(1.2, now);
+            crackGain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
 
-            const bufferSize = audioCtx.sampleRate * 0.15;
-            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+            const crackFilter = audioCtx.createBiquadFilter();
+            crackFilter.type = 'highpass';
+            crackFilter.frequency.setValueAtTime(1200, now);
 
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buffer;
+            crackOsc.connect(crackFilter);
+            crackFilter.connect(crackGain);
+            crackGain.connect(masterGain);
+            
+            crackOsc.start(now);
+            crackOsc.stop(now + 0.03);
 
-            const noiseFilter = audioCtx.createBiquadFilter();
-            noiseFilter.type = 'bandpass';
-            noiseFilter.frequency.value = 800;
+            // 2. High-frequency click transient (impact snap)
+            const clickOsc = audioCtx.createOscillator();
+            const clickGain = audioCtx.createGain();
+            clickOsc.type = 'triangle';
+            clickOsc.frequency.setValueAtTime(3000, now);
+            clickOsc.frequency.setValueAtTime(1200, now + 0.005);
+            
+            clickGain.gain.setValueAtTime(1.0, now);
+            clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
+            
+            clickOsc.connect(clickGain);
+            clickGain.connect(masterGain);
+            
+            clickOsc.start(now);
+            clickOsc.stop(now + 0.015);
 
-            const noiseGain = audioCtx.createGain();
-            noiseGain.gain.setValueAtTime(0.5, audioCtx.currentTime);
-            noiseGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+            // 3. Low-Frequency Punch / Muzzle Blast (Sub-bass boom)
+            const boomOsc = audioCtx.createOscillator();
+            const boomGain = audioCtx.createGain();
+            boomOsc.type = 'sawtooth'; // Sawtooth gives a grittier explosion feel than sine
+            boomOsc.frequency.setValueAtTime(200, now);
+            boomOsc.frequency.exponentialRampToValueAtTime(30, now + 0.15);
+            
+            boomGain.gain.setValueAtTime(1.5, now);
+            boomGain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
 
-            noise.connect(noiseFilter);
-            noiseFilter.connect(noiseGain);
-            noiseGain.connect(audioCtx.destination);
-            noise.start();
+            const boomFilter = audioCtx.createBiquadFilter();
+            boomFilter.type = 'lowpass';
+            boomFilter.frequency.setValueAtTime(280, now);
+
+            boomOsc.connect(boomFilter);
+            boomFilter.connect(boomGain);
+            boomGain.connect(masterGain);
+            
+            boomOsc.start(now);
+            boomOsc.stop(now + 0.17);
+
+            // 4. Gunpowder Combustion Blast (Noise burst texture)
+            // Generate white noise buffer
+            const noiseBufferSize = audioCtx.sampleRate * 1.5;
+            const noiseBuffer = audioCtx.createBuffer(1, noiseBufferSize, audioCtx.sampleRate);
+            const noiseData = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < noiseBufferSize; i++) {
+                noiseData[i] = Math.random() * 2 - 1;
+            }
+
+            const blastNoise = audioCtx.createBufferSource();
+            blastNoise.buffer = noiseBuffer;
+            
+            const blastNoiseGain = audioCtx.createGain();
+            const blastNoiseFilter = audioCtx.createBiquadFilter();
+            blastNoiseFilter.type = 'lowpass';
+            blastNoiseFilter.frequency.setValueAtTime(700, now);
+            blastNoiseFilter.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+
+            blastNoiseGain.gain.setValueAtTime(1.5, now);
+            blastNoiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+            blastNoise.connect(blastNoiseFilter);
+            blastNoiseFilter.connect(blastNoiseGain);
+            blastNoiseGain.connect(masterGain);
+            
+            blastNoise.start(now);
+
+            // 5. Environmental Echo/Tail (Outdoor distant reverb)
+            const tailNoise = audioCtx.createBufferSource();
+            tailNoise.buffer = noiseBuffer;
+            
+            const tailGain = audioCtx.createGain();
+            const tailFilter = audioCtx.createBiquadFilter();
+            tailFilter.type = 'bandpass';
+            tailFilter.frequency.setValueAtTime(1500, now);
+            tailFilter.frequency.exponentialRampToValueAtTime(200, now + 0.9);
+            tailFilter.Q.setValueAtTime(1.0, now);
+
+            // Rapid ramp up to mimic propagation delay, then slow decay
+            tailGain.gain.setValueAtTime(0.001, now);
+            tailGain.gain.linearRampToValueAtTime(0.4, now + 0.04);
+            tailGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+
+            tailNoise.connect(tailFilter);
+            tailFilter.connect(tailGain);
+            tailGain.connect(masterGain);
+            
+            tailNoise.start(now);
+
+            // 6. Chamber Metallic Slide Ring (Chamber snap detail)
+            const metalOsc = audioCtx.createOscillator();
+            const metalGain = audioCtx.createGain();
+            metalOsc.type = 'sine';
+            metalOsc.frequency.setValueAtTime(1400, now);
+            
+            metalGain.gain.setValueAtTime(0.12, now);
+            metalGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+            metalOsc.connect(metalGain);
+            metalGain.connect(masterGain);
+            
+            metalOsc.start(now);
+            metalOsc.stop(now + 0.09);
+        }
+
+        // Realistic Glass Shatter Synthesizer (Crunchy breaking shards, impact transient & high ringing)
+        function playGlassShatter() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const now = audioCtx.currentTime;
+            
+            const masterGain = audioCtx.createGain();
+            masterGain.gain.setValueAtTime(0.6, now); // Audible and premium
+            masterGain.connect(audioCtx.destination);
+            
+            // 1. Sharp glassy impact transient (high-pitched sine waves clicking)
+            const impactFreqs = [1760, 2200, 3120, 4400];
+            impactFreqs.forEach((freq) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, now);
+                
+                gain.gain.setValueAtTime(0.25, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05); // sharp decay
+                
+                osc.connect(gain);
+                gain.connect(masterGain);
+                osc.start(now);
+                osc.stop(now + 0.06);
+            });
+            
+            // 2. Shattering crunch layer (high-passed noise sparks scattered)
+            const crunchCount = 12;
+            const noiseBufferSize = audioCtx.sampleRate * 0.4;
+            const noiseBuffer = audioCtx.createBuffer(1, noiseBufferSize, audioCtx.sampleRate);
+            const noiseData = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < noiseBufferSize; i++) {
+                noiseData[i] = Math.random() * 2 - 1;
+            }
+            
+            for (let i = 0; i < crunchCount; i++) {
+                const noiseSource = audioCtx.createBufferSource();
+                noiseSource.buffer = noiseBuffer;
+                
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'highpass';
+                // Randomize filter frequency between 2500Hz and 6000Hz
+                filter.frequency.setValueAtTime(2500 + Math.random() * 3500, now);
+                
+                const gain = audioCtx.createGain();
+                const onset = now + i * 0.015 + Math.random() * 0.01; // scattered crunch
+                const decay = 0.03 + Math.random() * 0.05;
+                
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.setValueAtTime(0.4, onset);
+                gain.gain.exponentialRampToValueAtTime(0.001, onset + decay);
+                
+                noiseSource.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+                
+                noiseSource.start(onset);
+                noiseSource.stop(onset + decay + 0.02);
+            }
+            
+            // 3. Shimmering high-pitched resonance (ringing crystal shards)
+            const ringCount = 5;
+            for (let i = 0; i < ringCount; i++) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                
+                const freq = 1800 + i * 500 + Math.random() * 300;
+                const onset = now + i * 0.012;
+                const decay = 0.15 + Math.random() * 0.15;
+                
+                osc.frequency.setValueAtTime(freq, onset);
+                osc.frequency.exponentialRampToValueAtTime(freq * 0.9, onset + decay);
+                
+                gain.gain.setValueAtTime(0.15, onset);
+                gain.gain.exponentialRampToValueAtTime(0.001, onset + decay);
+                
+                osc.connect(gain);
+                gain.connect(masterGain);
+                osc.start(onset);
+                osc.stop(onset + decay + 0.02);
+            }
+        }
+
+        // Visual Glass Shattering Effect for Buttons/Clickables (Highly Visible & Responsive to Sizing)
+        function shatterButton(btn, e) {
+            if (btn.classList.contains('shattered-active')) return;
+            btn.classList.add('shattered-active');
+            
+            playGlassShatter();
+            
+            const rect = btn.getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(btn);
+            const originalPosition = computedStyle.position;
+            const originalDisplay = computedStyle.display;
+            
+            // Calculate absolute position on body to avoid overflow clipping
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const absoluteLeft = rect.left + scrollLeft;
+            const absoluteTop = rect.top + scrollTop;
+            
+            // Create shatter overlay container on document.body
+            const container = document.createElement('div');
+            container.className = 'shatter-overlay';
+            container.style.position = 'absolute';
+            container.style.left = absoluteLeft + 'px';
+            container.style.top = absoluteTop + 'px';
+            container.style.width = rect.width + 'px';
+            container.style.height = rect.height + 'px';
+            container.style.pointerEvents = 'none';
+            container.style.overflow = 'visible';
+            container.style.zIndex = '9999';
+            
+            document.body.appendChild(container);
+            btn.classList.add('shatter-hide-content');
+            
+            const bg = computedStyle.backgroundColor;
+            const border = computedStyle.borderColor;
+            
+            // Boost shard visibility
+            let shardColor = bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' ? bg : 'rgba(196, 10, 27, 0.4)';
+            if (shardColor.includes('rgba')) {
+                shardColor = shardColor.replace(/[\d\.]+\)$/, '0.85)'); // Force 85% opacity background
+            } else if (shardColor.includes('rgb')) {
+                shardColor = shardColor.replace('rgb', 'rgba').replace(')', ', 0.85)');
+            }
+            const shardBorder = border !== 'rgba(0, 0, 0, 0)' && border !== 'transparent' ? border : 'rgba(255, 0, 21, 0.9)';
+            
+            // Calculate relative click coordinates for the impact point
+            const clientX = e ? e.clientX : rect.left + rect.width / 2;
+            const clientY = e ? e.clientY : rect.top + rect.height / 2;
+            const clickX = clientX - rect.left;
+            const clickY = clientY - rect.top;
+            
+            // Detect if the target is a small/thin element (e.g. text links in contact info)
+            const isSmall = rect.height < 35;
+            
+            // 1. Spawning Shards (Scaled based on element size)
+            const cols = 7;
+            const rows = isSmall ? 2 : 5;
+            const sw = rect.width / cols;
+            const sh = rect.height / rows;
+            
+            // Scaled explode force and gravity
+            const forceBase = isSmall ? 40 : 120;
+            const forceRange = isSmall ? 70 : 220;
+            const gravity = isSmall ? 45 : 110;
+            
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const shard = document.createElement('div');
+                    shard.className = 'glass-shard';
+                    
+                    const left = c * sw;
+                    const top = r * sh;
+                    
+                    shard.style.position = 'absolute';
+                    shard.style.left = left + 'px';
+                    shard.style.top = top + 'px';
+                    shard.style.width = sw + 'px';
+                    shard.style.height = sh + 'px';
+                    shard.style.background = shardColor;
+                    shard.style.border = `${isSmall ? 1 : 2}px solid ${shardBorder}`; // Thinner border for small shards
+                    shard.style.boxShadow = `0 0 ${isSmall ? 6 : 12}px ${shardBorder}, inset 0 0 ${isSmall ? 4 : 8}px rgba(255, 255, 255, 0.55)`;
+                    
+                    // Jagged triangular geometries
+                    const p1 = `${Math.random()*20}% ${Math.random()*20}%`;
+                    const p2 = `${80 + Math.random()*20}% ${Math.random()*20}%`;
+                    const p3 = `${Math.random()*100}% ${80 + Math.random()*20}%`;
+                    shard.style.clipPath = `polygon(${p1}, ${p2}, ${p3})`;
+                    
+                    container.appendChild(shard);
+                    
+                    // Explode mechanics relative to the click point
+                    const shardCenterX = left + sw/2;
+                    const shardCenterY = top + sh/2;
+                    let dx = shardCenterX - clickX;
+                    let dy = shardCenterY - clickY;
+                    
+                    const distance = Math.sqrt(dx*dx + dy*dy) || 1;
+                    dx /= distance;
+                    dy /= distance;
+                    
+                    const force = forceBase + Math.random() * forceRange; 
+                    const tx = dx * force;
+                    const ty = dy * force + gravity;
+                    const rotate = -360 + Math.random() * 720;
+                    
+                    shard.style.transition = 'transform 1.6s cubic-bezier(0.1, 0.8, 0.15, 1), opacity 1.4s cubic-bezier(0.6, 0, 0.8, 0.4)';
+                    
+                    requestAnimationFrame(() => {
+                        shard.style.transform = `translate(${tx}px, ${ty}px) rotate(${rotate}deg) scale(0.75)`; 
+                        shard.style.opacity = '0';
+                    });
+                }
+            }
+            
+            // 2. Glowing Spiderweb Vector Glass Cracks Overlay (Append to body & size/position 1-to-1)
+            const cracks = document.createElement('div');
+            cracks.className = 'glass-cracks';
+            cracks.style.position = 'absolute';
+            cracks.style.left = absoluteLeft + 'px';
+            cracks.style.top = absoluteTop + 'px';
+            cracks.style.width = rect.width + 'px';
+            cracks.style.height = rect.height + 'px';
+            cracks.style.pointerEvents = 'none';
+            cracks.style.zIndex = '9998'; // Just below the shards overlay
+            cracks.style.overflow = 'hidden';
+            cracks.style.borderRadius = computedStyle.borderRadius;
+            
+            // Radial dark gradient at click point
+            cracks.style.background = `radial-gradient(circle at ${clickX}px ${clickY}px, rgba(0, 0, 0, 0.2) 10%, rgba(0,0,0,0) 80%)`;
+            
+            // Construct SVG vector paths for cracks radiating from the impact point
+            let svgContent = `<svg width="100%" height="100%" viewBox="0 0 ${rect.width} ${rect.height}" xmlns="http://www.w3.org/2000/svg" style="display:block;">`;
+            
+            // Generate radiating cracks
+            const numRays = isSmall ? 5 : 8; // Fewer rays for small links
+            const maxDist = isSmall ? Math.min(rect.height * 2.2, 50) : Math.max(rect.width, rect.height) * 0.85; // Capped radius
+            
+            for (let j = 0; j < numRays; j++) {
+                const angle = (j / numRays) * Math.PI * 2 + (Math.random() * 0.4 - 0.2);
+                let curX = clickX;
+                let curY = clickY;
+                let pathD = `M ${curX} ${curY}`;
+                
+                const steps = isSmall ? 3 : (4 + Math.floor(Math.random() * 3));
+                for (let s = 1; s <= steps; s++) {
+                    const ratio = s / steps;
+                    const dist = ratio * maxDist * (0.6 + Math.random() * 0.4);
+                    const wiggle = isSmall ? (Math.random() * 6 - 3) : (Math.random() * 20 - 10);
+                    const targetX = clickX + Math.cos(angle) * dist + Math.cos(angle + Math.PI/2) * wiggle;
+                    const targetY = clickY + Math.sin(angle) * dist + Math.sin(angle + Math.PI/2) * wiggle;
+                    
+                    curX = Math.max(-10, Math.min(rect.width + 10, targetX));
+                    curY = Math.max(-10, Math.min(rect.height + 10, targetY));
+                    pathD += ` L ${curX} ${curY}`;
+                }
+                
+                // Draw crack layers
+                svgContent += `<path d="${pathD}" stroke="${shardBorder}" stroke-width="${isSmall ? 1.5 : 2.5}" fill="none" opacity="0.95" />`;
+                svgContent += `<path d="${pathD}" stroke="#ffffff" stroke-width="${isSmall ? 0.5 : 0.8}" fill="none" opacity="1" />`;
+            }
+            
+            // Concentric circles
+            const numRings = isSmall ? 2 : 3;
+            const ringBase = isSmall ? 6 : 12;
+            for (let ring = 1; ring <= numRings; ring++) {
+                const radius = ring * (ringBase + Math.random() * ringBase);
+                let pathD = "";
+                const sides = isSmall ? 5 : (6 + Math.floor(Math.random() * 3));
+                for (let s = 0; s <= sides; s++) {
+                    const angle = (s / sides) * Math.PI * 2;
+                    const rWiggle = radius * (0.85 + Math.random() * 0.3);
+                    const px = clickX + Math.cos(angle) * rWiggle;
+                    const py = clickY + Math.sin(angle) * rWiggle;
+                    if (s === 0) {
+                        pathD += `M ${px} ${py}`;
+                    } else {
+                        pathD += ` L ${px} ${py}`;
+                    }
+                }
+                pathD += " Z";
+                svgContent += `<path d="${pathD}" stroke="${shardBorder}" stroke-width="${isSmall ? 1.0 : 1.8}" fill="none" opacity="0.85" />`;
+                svgContent += `<path d="${pathD}" stroke="#ffffff" stroke-width="${isSmall ? 0.3 : 0.6}" fill="none" opacity="0.95" />`;
+            }
+            
+            svgContent += `</svg>`;
+            cracks.innerHTML = svgContent;
+            
+            document.body.appendChild(cracks);
+            
+            // Clean up and restore content
+            setTimeout(() => {
+                container.remove();
+                cracks.remove();
+                btn.classList.remove('shatter-hide-content');
+                btn.classList.remove('shattered-active');
+                if (originalPosition === 'static' || originalPosition === '') {
+                    btn.style.position = '';
+                }
+                if (originalDisplay === 'inline') {
+                    btn.style.display = '';
+                }
+            }, 1600);
         }
 
         // Firing Mechanics
         document.addEventListener('mousedown', (e) => {
-            play8BitGunshot();
+            playSniperGunshot();
 
             // Recoil Animation
             cursor.classList.add('firing');
@@ -1809,6 +2715,12 @@
                 document.body.appendChild(spark);
                 setTimeout(() => spark.remove(), 300);
             }
+
+            // Click target checks for visual glass shattering
+            const targetButton = e.target.closest('a, button, .social-btn');
+            if (targetButton) {
+                shatterButton(targetButton, e);
+            }
         });
 
         // Reveal Animations & Active Nav Tracking
@@ -1834,13 +2746,11 @@
 
         // Typewriter Effect
         const words = [
-            "I'm a Full Stack Developer",
             "I'm a Java Developer",
-            "I'm a Backend Developer",
-            "I'm an App Builder",
+            "I'm a Full Stack Learner",
             "I'm an AI Enthusiast",
-            "I'm a Problem Solver",
-            "I'm an Active Learner"
+            "I'm a Problem Solver (DSA)",
+            "I'm a CS Engineering Student"
         ];
         let wordIndex = 0;
         let typewriterTimer;
