@@ -3121,8 +3121,53 @@
 
         }
 
-        @media (max-width: 768px) {
+        /* ─── Stylesheet Hamburger Toggle ────────────────────────── */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 105;
+            padding: 0;
+        }
 
+        .nav-toggle .bar {
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(255, 0, 21, 0.8);
+        }
+
+        /* ─── Responsive Media Queries ───────────────────────────── */
+        @media (max-width: 992px) {
+            .hud-element {
+                display: none !important;
+            }
+            .hero-container {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+                text-align: center !important;
+            }
+            .hero-info {
+                align-items: center !important;
+            }
+            .hero-subtitle-new {
+                text-align: center !important;
+                border-left: none !important;
+                padding-left: 0 !important;
+            }
+            .hero-actions {
+                justify-content: center !important;
+            }
+        }
+
+        @media (max-width: 768px) {
             section,
             #experience,
             #projects,
@@ -3130,43 +3175,104 @@
             #about,
             #skills,
             #contact {
-                padding: 80px 20px !important;
+                padding: 60px 20px !important;
+                overflow: hidden !important;
+            }
+
+            /* Hamburger Menu Toggle */
+            .nav-toggle {
+                display: flex !important;
             }
 
             nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                padding: 15px 25px !important;
             }
 
             .nav-links {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important;
+                width: 70% !important;
+                height: 100vh !important;
+                background: rgba(10, 0, 0, 0.98) !important;
+                backdrop-filter: blur(20px) !important;
+                -webkit-backdrop-filter: blur(20px) !important;
+                border-left: 2px solid var(--primary) !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 25px !important;
+                transition: right 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+                z-index: 100 !important;
+                box-shadow: -10px 0 30px rgba(255, 0, 21, 0.2) !important;
+                padding: 40px !important;
+            }
+
+            .nav-links.open {
+                right: 0 !important;
+            }
+
+            /* Hamburger Menu Animation */
+            .nav-toggle.open .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg) !important;
+            }
+
+            .nav-toggle.open .bar:nth-child(2) {
+                opacity: 0 !important;
+            }
+
+            .nav-toggle.open .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg) !important;
             }
 
             #contact,
             #about {
-                flex-direction: column;
-                gap: 40px;
+                flex-direction: column !important;
+                gap: 40px !important;
             }
 
-            .hero-subtitle-new {
-                font-size: 11px !important;
-                border-left: none !important;
-                padding-left: 0 !important;
-                text-align: center !important;
-                margin: 10px auto !important;
+            .hero-title-main {
+                font-size: clamp(32px, 8vw, 52px) !important;
+                letter-spacing: 3px !important;
+            }
+
+            .typewriter-container {
+                font-size: clamp(14px, 4vw, 18px) !important;
+            }
+
+            .avatar-container-new {
+                width: 250px !important;
+                height: 250px !important;
+            }
+
+            .section-title {
+                font-size: 32px !important;
+                letter-spacing: 3px !important;
+                margin-bottom: 30px !important;
+            }
+
+            .section-bg-num {
+                font-size: 80px !important;
+                right: 20px !important;
+                top: 20px !important;
+            }
+
+            .projects-grid, .achievements-grid, .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+                gap: 20px !important;
             }
         }
 
         @media (max-width: 480px) {
             .nav-links {
-                gap: 8px 12px;
+                width: 85% !important;
             }
-
-            .nav-links a {
-                font-size: 11px;
+            .avatar-container-new {
+                width: 200px !important;
+                height: 200px !important;
+            }
+            .hero-title-main {
+                font-size: 32px !important;
             }
         }
 
@@ -3190,6 +3296,40 @@
             .avatar-container-new {
                 cursor: pointer !important;
             }
+        }
+
+        /* Glowing Cyberpunk Toast Notification */
+        .cyber-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(10, 0, 0, 0.95);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(255, 0, 21, 0.4), inset 0 0 10px rgba(255, 0, 21, 0.2);
+            color: var(--white);
+            padding: 15px 25px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .cyber-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cyber-toast-icon {
+            color: var(--primary);
+            text-shadow: 0 0 8px rgba(255, 0, 21, 0.8);
+            font-weight: 800;
         }
     </style>
 
@@ -3239,7 +3379,13 @@
 
         <div class="nav-logo glitch" data-text="PORTFOLIO">PORTFOLIO</div>
 
-        <div class="nav-links">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
 
             <a href="#home" class="active">HOME</a>
 
@@ -4349,6 +4495,25 @@
 
     <script>
 
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navLinksArray = document.querySelectorAll('.nav-links a');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            navLinksArray.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('open');
+                    navLinks.classList.remove('open');
+                });
+            });
+        }
+
         // Advanced Custom Cursor
 
         const cursor = document.getElementById('cursor');
@@ -5249,79 +5414,97 @@
 
 
 
-        // Firing Mechanics
+        // Standalone Gun Firing Mechanics
+        function triggerShot(e) {
+            playSniperGunshot();
 
+            // Recoil Animation
+            if (cursor) {
+                cursor.classList.add('firing');
+                setTimeout(() => cursor.classList.remove('firing'), 100);
+            }
+
+            // Bullet Hole
+            let hole = document.createElement('div');
+            hole.className = 'bullet-hole';
+            hole.style.left = e.pageX + 'px';
+            hole.style.top = e.pageY + 'px';
+            document.body.appendChild(hole);
+            setTimeout(() => hole.remove(), 3000);
+
+            // Sparks
+            for (let i = 0; i < 5; i++) {
+                let spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = e.pageX + 'px';
+                spark.style.top = e.pageY + 'px';
+                let angle = Math.random() * Math.PI * 2;
+                let dist = 15 + Math.random() * 20;
+                spark.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+                spark.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+                document.body.appendChild(spark);
+                setTimeout(() => spark.remove(), 300);
+            }
+        }
+
+        // Firing Mechanics for Desktop
         document.addEventListener('mousedown', (e) => {
             if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
                 return;
             }
+            triggerShot(e);
+        });
 
-            playSniperGunshot();
-
-
-
-            // Recoil Animation
-
-            cursor.classList.add('firing');
-
-            setTimeout(() => cursor.classList.remove('firing'), 100);
-
-
-
-            // Bullet Hole
-
-            let hole = document.createElement('div');
-
-            hole.className = 'bullet-hole';
-
-            hole.style.left = e.pageX + 'px';
-
-            hole.style.top = e.pageY + 'px';
-
-            document.body.appendChild(hole);
-
-            setTimeout(() => hole.remove(), 3000);
-
-
-
-            // Sparks
-
-            for (let i = 0; i < 5; i++) {
-
-                let spark = document.createElement('div');
-
-                spark.className = 'spark';
-
-                spark.style.left = e.pageX + 'px';
-
-                spark.style.top = e.pageY + 'px';
-
-                let angle = Math.random() * Math.PI * 2;
-
-                let dist = 15 + Math.random() * 20;
-
-                spark.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
-
-                spark.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
-
-                document.body.appendChild(spark);
-
-                setTimeout(() => spark.remove(), 300);
-
+        // Cyberpunk Toast Notification System
+        function showToast(message) {
+            let toast = document.getElementById('cyberToast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'cyberToast';
+                toast.className = 'cyber-toast';
+                toast.innerHTML = '<span class="cyber-toast-icon">[SYS]</span> <span id="cyberToastText"></span>';
+                document.body.appendChild(toast);
             }
+            document.getElementById('cyberToastText').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
 
+        function copyEmailToClipboard(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                showToast("EMAIL COPIED: " + email);
+            }).catch(() => {
+                // Clipboard fallback fails gracefully
+            });
+        }
 
-
-            // Click target checks for visual glass shattering
+        // Click mechanics (covers mobile gunshot/bullet hole & all button shatter animations)
+        document.addEventListener('click', (e) => {
+            // Trigger firing sound and bullet holes on mobile tap/click
+            if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                triggerShot(e);
+            }
 
             const targetButton = e.target.closest('a, button, .social-btn');
-
             if (targetButton) {
+                // Cache coordinates to prevent issues with event lifecycle inside setTimeout
+                const clientX = e.clientX;
+                const clientY = e.clientY;
+                const cachedEvent = { clientX, clientY };
 
-                shatterButton(targetButton, e);
+                // Copy to clipboard fallback for email links
+                const href = targetButton.getAttribute('href');
+                if (href && href.startsWith('mailto:')) {
+                    copyEmailToClipboard("amizhthan.a.404@gmail.com");
+                }
 
+                // Delay the shatter animation to allow default click / redirect events to process first
+                setTimeout(() => {
+                    shatterButton(targetButton, cachedEvent);
+                }, 100);
             }
-
         });
 
 
@@ -5552,6 +5735,7 @@
                         const body = 'Name: ' + nameInput.value.trim() + '\nEmail: ' + emailInput.value.trim() + '\n\nMessage:\n' + messageInput.value.trim();
 
                         window.location.href = 'mailto:amizhthan.a.404@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+                        copyEmailToClipboard("amizhthan.a.404@gmail.com");
 
                     }
 
